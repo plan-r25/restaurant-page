@@ -1,9 +1,10 @@
 import "./style.css"
+import image from "./images/intro.png";
 
 import { loadContact } from "./about.js";
 import { loadMenu } from "./menu.js";
 import { loadHome } from "./home.js";
-// alert('hello');
+
 const cnt = document.querySelector("#content");
 const btns = document.querySelectorAll("button");
 
@@ -11,22 +12,27 @@ btns.forEach(btn => {
   btn.addEventListener("click", (e) => {
     console.log(e.target.textContent);
     if (e.target.textContent === 'Home') {
-      loadMenu.remove();
-      loadContact.remove()
+      cnt.replaceChildren();
       cnt.appendChild(loadHome);
     } else if (e.target.textContent === 'Menu') {
-      loadHome.remove()
-      loadContact.remove()
-      cnt.appendChild(loadMenu);
+      cnt.replaceChildren();
+      loadMenu();
     } else {
-      loadHome.remove();
-      loadMenu.remove();
+      cnt.replaceChildren();
       cnt.appendChild(loadContact);
     }
   })
 })
 
+const img = document.createElement("img");
+img.src = image;
+
+const head = document.querySelector("header");
+
+head.appendChild(img);
+
 console.log("plan2");
+
 
 // cnt.appendChild(loadContact);
 // cnt.appendChild(loadMenu);
