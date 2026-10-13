@@ -87,6 +87,8 @@ export const loadMenu = menu;
 
 //first we'll create a dynamic outer and inner card to hold our dish and info 
 
+// the problem is how do i add unique images, with their respective
+
 //append dish name, description, image and price to inner card
 
 //well if we include only the dish name then our current template() is perfect
