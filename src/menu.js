@@ -24,63 +24,99 @@ function menu() {
   // const dessert = template("dessert", "white", "silver", "vanilla");
   // menuDiv.append(curry, biryani, dessert);
 
-  const test = card();
-  menuDiv.appendChild(test);
+  const food = new foodCard({
+    imgSrc: bir,
+    title: "Biryani",
+    des: "The taste of India",
+    price: "₹450",
+  });
+
+  const foo = food.render();
+  // const test = card();
+  menuDiv.appendChild(foo);
 
 };
 
-function template(n, n1, n2, n3, n4) {
-  const c1 = document.createElement("div"); //main div
+// function template(n, n1, n2, n3, n4) {
+//   const c1 = document.createElement("div"); //main div
 
-  c1.classList.add("c1");
-  const cName = document.createElement("h2"); 
-  cName.textContent = n;
+//   c1.classList.add("c1");
+//   const cName = document.createElement("h2"); 
+//   cName.textContent = n;
 
-  const subDiv = document.createElement("div"); //sub div for dishes
+//   const subDiv = document.createElement("div"); //sub div for dishes
 
-  const p1 = document.createElement("p");
-  const p2 = document.createElement("p");
-  const p3 = document.createElement("p");
-  const p4 = document.createElement("p");
+//   const p1 = document.createElement("p");
+//   const p2 = document.createElement("p");
+//   const p3 = document.createElement("p");
+//   const p4 = document.createElement("p");
 
-  const miniDiv = document.createElement("div"); // div to hold img and description of the dish
+//   const miniDiv = document.createElement("div"); // div to hold img and description of the dish
 
-  miniDiv.classList.add("para");
+//   miniDiv.classList.add("para");
 
-  p1.classList.add("p");
+//   p1.classList.add("p");
 
-  miniDiv.append(p1, img);
+//   miniDiv.append(p1, img);
 
-  p1.textContent = n1;
-  p2.textContent = n2;
-  p3.textContent = n3;
-  p4.textContent = n4; 
+//   p1.textContent = n1;
+//   p2.textContent = n2;
+//   p3.textContent = n3;
+//   p4.textContent = n4; 
 
-  subDiv.append(miniDiv, p2, p3, p4);
-  subDiv.classList.add("subDiv");
-  c1.append(cName, subDiv);
+//   subDiv.append(miniDiv, p2, p3, p4);
+//   subDiv.classList.add("subDiv");
+//   c1.append(cName, subDiv);
 
-  return c1;
-}
+//   return c1;
+// }
 
-function card() {
-  const outerDiv = document.createElement("div");
-  const innerDiv = document.createElement("div");
+// function card() {
+//   const outerDiv = document.createElement("div");
+//   const innerDiv = document.createElement("div");
 
-  const name = document.createElement("h2");
-  const des = document.createElement("p");
-  const image = document.createElement("img");
-  const price = document.createElement("p");
+//   const name = document.createElement("h2");
+//   const des = document.createElement("p");
+//   const image = document.createElement("img");
+//   const price = document.createElement("p");
 
-  name.textContent = "Chicken Biryani";
-  des.textContent = "The most loved chicken biryani, dish of the people";
-  image.src = bir;
-  price.textContent = "₹340"
+//   name.textContent = "Chicken Biryani";
+//   des.textContent = "The most loved chicken biryani, dish of the people";
+//   image.src = bir;
+//   price.textContent = "₹340"
 
 
-  innerDiv.append(name, des, image, price);
-  outerDiv.appendChild(innerDiv);
-  return outerDiv;
+//   innerDiv.append(name, des, image, price);
+//   outerDiv.appendChild(innerDiv);
+//   return outerDiv;
+// }
+
+class foodCard {
+  constructor({ imgSrc, title, des, price, buttonText = "ORDER" }) {
+      this.imgSrc = imgSrc;
+      this.title = title;
+      this.des = des;
+      this.price = price;
+      this.btnText = buttonText;
+  }
+
+  render() {
+    const img = document.createElement("img");
+    img.src = this.imgSrc;
+    const dish = document.createElement("h2");
+    dish.textContent   = this.title;
+    const description = document.createElement("p");
+    description.textContent = this.des;
+    const priceEl = document.createElement("h3");
+    priceEl.textContent = this.price;
+    const btn = document.createElement("button");
+    btn.textContent = this.btnText;
+
+    const dishCard = document.createElement("div");
+
+    dishCard.append(img, dish, description, priceEl, btn);
+    return dishCard;
+  }
 }
 
 export const loadMenu = menu;
